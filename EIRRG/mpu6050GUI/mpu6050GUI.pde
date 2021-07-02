@@ -1,6 +1,8 @@
 import processing.serial.*;
  
-int AXWindowWidth
+int AXWindowWidth=100;
+int AXWindowHeight=100;
+
 
 Serial myPort;
 int xpos=1;
