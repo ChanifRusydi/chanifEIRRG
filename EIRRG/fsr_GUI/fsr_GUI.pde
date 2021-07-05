@@ -6,6 +6,12 @@ float averageforce=(leftfootforce+rightfootforce)/2
 
 import processing.serial.*;
 
+int FSRLeftWidth==100;
+int FSRLeftHeight=100;
+int FSRLeftPosition=800;
+
+int FSRRightWidth=100;
+int FSRRightWidth=100;
 Serial myPort;        // The serial port
 int xPos = 1;         // horizontal position of the graph
 float inByte = 0;
