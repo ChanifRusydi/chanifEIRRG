@@ -64,3 +64,14 @@ void serialEvent (Serial myPort) {
       inByte = map(inByte, 0, 1023, 0, height);
     }
   }
+
+void tulisan(){
+  //CoP
+  String textCoP="CoP Position : ";
+  text(textCoP, 24,100)
+  
+  String textLeftForce="Force on Left Position :"
+  text(textLeftForce,24,200);
+
+  String textRighForce
+}
