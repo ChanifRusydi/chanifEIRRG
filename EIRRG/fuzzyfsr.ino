@@ -5,7 +5,8 @@
 int inputpin=A0;
 float xn,xze, xp;
 float n,yze,yp;
-float datafsr[8];
+float datafsr[8]
+float weight[];;
 float ruleNN, ruleNZ, ruleNP, ruleZN, ruleZZ, ruleZP, rulePN, rulePZ,rulePP;
 float hitungCoP(float fsr1, float fsr2, float fsr3, float fsr4){
     int size=sizeof(datafsr)/sizeof(int);
@@ -43,12 +44,18 @@ float segitiga(float titik_1, float titik_2, float titik_3, float input){
     }
 
 float weight_average(){
-    
+    int panjangarray=sizeof(weight)/sizeof(int);
+    for(int i=0;i<){
+        pembilang=
+        penyebut=
+    }
+    return pembilang/penyebut
 }
 void fuzzifikasiX(float nilaiinput){
     if (nilaiinput>0 && nilaiinput<6){
         linear_turun(0,6,nilaiinput)
         segitiga()
+        weight=0
     }
     else if (nilaiinput>)
 }
