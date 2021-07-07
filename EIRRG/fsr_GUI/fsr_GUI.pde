@@ -68,14 +68,15 @@ void serialEvent (Serial myPort) {
   }
 
 void tulisan(){
-  int  xcop;
-int ycop;
-float leftfootforce;
-float rightfootforce;
-float averageforce=(leftfootforce+rightfootforce)/2;
+  int  xcop=0;
+  int ycop=0;
+  float leftfootforce;
+  float rightfootforce;
+  float averageforce=(leftfootforce+rightfootforce)/2;
   //CoP
   String textCoP="CoP Position : ";
-  text(textCoP, 24,100);
+  String nilaiCoP=xcop+","+ycop;
+  text(textCoP+nilaiCoP, 24,200);
   
   String textLeftForce="Force on Left Position :"
   text(textLeftForce,24,250);
@@ -86,11 +87,13 @@ float averageforce=(leftfootforce+rightfootforce)/2;
   String averageforce="Average Force :";
   text(averageforce,24,350);
 }
-void countCoP(){
+float countCoP(){
   float pembilang=0;
   float penyebut=0;
   for(int i=0;i<force.length();i++){
     pembilang=force[i]*posisisensor[i]
     penyebut=penyebut+force[i]
   }
+  return pembilang/penyebut;
 }
+
