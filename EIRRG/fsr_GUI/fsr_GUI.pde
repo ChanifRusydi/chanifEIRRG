@@ -16,8 +16,8 @@ Serial myPort;        // The serial port
 int xPos = 1;         // horizontal position of the graph
 float inByte = 0;
 
-int[8] force = new int[8];
-int[8] posisisensor = new int[8]
+int[] force = new int[8];
+int[] posisisensor = new int[8];
 void setup () {
     // set the window size:
    size(400, 300);
@@ -87,8 +87,10 @@ float averageforce=(leftfootforce+rightfootforce)/2;
   text(averageforce,24,350);
 }
 void countCoP(){
-  jumlahsensor=8;
-  for(int i=0;i<jumlahsensor;i++){
+  float pembilang=0;
+  float penyebut=0;
+  for(int i=0;i<force.length();i++){
     pembilang=force[i]*posisisensor[i]
+    penyebut=penyebut+force[i]
   }
 }
