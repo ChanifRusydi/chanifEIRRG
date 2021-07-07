@@ -16,6 +16,8 @@ Serial myPort;        // The serial port
 int xPos = 1;         // horizontal position of the graph
 float inByte = 0;
 
+int[8] force = new int[8];
+int[8] posisisensor = new int[8]
 void setup () {
     // set the window size:
    size(400, 300);
@@ -66,6 +68,11 @@ void serialEvent (Serial myPort) {
   }
 
 void tulisan(){
+  int  xcop;
+int ycop;
+float leftfootforce;
+float rightfootforce;
+float averageforce=(leftfootforce+rightfootforce)/2;
   //CoP
   String textCoP="CoP Position : ";
   text(textCoP, 24,100);
@@ -80,9 +87,8 @@ void tulisan(){
   text(averageforce,24,350);
 }
 void countCoP(){
-  int  xcop;
-  int ycop;
-  float leftfootforce;
-  float rightfootforce;
-  float averageforce=(leftfootforce+rightfootforce)/2;
+  jumlahsensor=8;
+  for(int i=0;i<jumlahsensor;i++){
+    pembilang=force[i]*posisisensor[i]
+  }
 }
