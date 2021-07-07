@@ -5,9 +5,15 @@
 int inputpin=A0;
 float xn,xze, xp;
 float n,yze,yp;
+float datafsr[8];
 float ruleNN, ruleNZ, ruleNP, ruleZN, ruleZZ, ruleZP, rulePN, rulePZ,rulePP;
-float hitungCoP(float fsr1, float fsr2, floa fsr3, float fsr4){
-    return xcop;
+float hitungCoP(float fsr1, float fsr2, float fsr3, float fsr4){
+    int size=sizeof(datafsr)/sizeof(int);
+    for(int i=0;i<size,i++){
+        pembilang=datafsr[i]*posisifsr[i];
+        penyebut=penyebut+datafsr[i]
+    }
+    return pembilang/penyebut;
 }
 float linear_naik(float titik_1, float titik_2, float input){
     if (input<=titik_1){
@@ -44,7 +50,7 @@ void fuzzifikasiX(float nilaiinput){
         linear_turun(0,6,nilaiinput)
         segitiga()
     }
-    else if (nilaiinput> )
+    else if (nilaiinput>)
 }
 void setup(){
     pinMode(inputpin, INPUT)
@@ -52,8 +58,8 @@ void setup(){
 }
 
 void loop(){
-    
     int batas_bawah=0;
     int batas_atasx=12;
     int batas_atasy=20;
+
 }
