@@ -75,17 +75,17 @@ void tulisan(){
   float averageforce=(leftfootforce+rightfootforce)/2;
   //CoP
   String textCoP="CoP Position : ";
-  String nilaiCoP=xcop+","+ycop;
+  String nilaiCoP=xcop+" , "+ycop;
   text(textCoP+nilaiCoP, 24,200);
   
-  String textLeftForce="Force on Left Position :"
-  text(textLeftForce,24,250);
+  String textLeftForce="Force on Left :"
+  text(textLeftForce,24,210);
 
   String textRightForce="Force on Right :";
-  text(textRightForce,24,300);
+  text(textRightForce,24,220);
 
-  String averageforce="Average Force :";
-  text(averageforce,24,350);
+  String textaverageforce="Average Force :";
+  text(textaverageforce+averageforce,24,220);
 }
 float countCoP(){
   float pembilang=0;
