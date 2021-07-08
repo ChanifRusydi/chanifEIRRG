@@ -10,6 +10,7 @@ float weight[];;
 float ruleNN, ruleNZ, ruleNP, ruleZN, ruleZZ, ruleZP, rulePN, rulePZ,rulePP;
 float hitungCoP(float fsr1, float fsr2, float fsr3, float fsr4){
     int size=sizeof(datafsr)/sizeof(int);
+    int pembilang=0,penyebut=0;
     for(int i=0;i<size,i++){
         pembilang=datafsr[i]*posisifsr[i];
         penyebut=penyebut+datafsr[i]
@@ -45,6 +46,7 @@ float segitiga(float titik_1, float titik_2, float titik_3, float input){
 
 float weight_average(){
     int panjangarray=sizeof(weight)/sizeof(int);
+    int pembilang=0,penyebut=0;
     for(int i=0;i<){
         pembilang=
         penyebut=
