@@ -1,7 +1,7 @@
-int  xcop;
-int ycop;
-float leftfootforce;
-float rightfootforce;
+public int  xcop;
+public int ycop;
+public float leftfootforce=0;
+float rightfootforce==0;
 float averageforce=(leftfootforce+rightfootforce)/2;
 
 import processing.serial.*;
@@ -16,8 +16,14 @@ Serial myPort;        // The serial port
 int xPos = 1;         // horizontal position of the graph
 float inByte = 0;
 
-int[] force = new int[8];
-int[] posisisensor = new int[8];
+int[] forceleft= new int[8];
+int[] posisisensorleft = new int[8];
+int[] forceright= new int[8];
+int[] posisisensorright = new int[8];
+for(int i=0;i<force.length;i++){
+  leftfootforce+=forceleft[i];
+  rightfootforce+=forceright[i];
+}
 void setup () {
     // set the window size:
    size(400, 300);
@@ -73,6 +79,7 @@ void tulisan(){
   float leftfootforce;
   float rightfootforce;
   float averageforce=(leftfootforce+rightfootforce)/2;
+
   //CoP
   String textCoP="CoP Position : ";
   String nilaiCoP=xcop+" , "+ycop;
@@ -90,10 +97,13 @@ void tulisan(){
 float countCoP(){
   float pembilang=0;
   float penyebut=0;
+  //tentukan ssp atau dsp
+  
   for(int i=0;i<force.length();i++){
     pembilang=force[i]*posisisensor[i]
     penyebut=penyebut+force[i]
   }
   return pembilang/penyebut;
 }
+
 
