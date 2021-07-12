@@ -1,7 +1,7 @@
 public int  xcop;
 public int ycop;
-public float leftfootforce=0;
-float rightfootforce==0;
+public int leftfootforce=0;
+public int rightfootforce=0;
 float averageforce=(leftfootforce+rightfootforce)/2;
 
 import processing.serial.*;
@@ -94,16 +94,16 @@ void tulisan(){
   String textaverageforce="Average Force :";
   text(textaverageforce+averageforce,24,220);
 }
-float countCoP(){
-  float pembilang=0;
-  float penyebut=0;
-  //tentukan ssp atau dsp
+void tentukanCoP(){
+  float countCoP(){
+    float pembilang=0;
+    float penyebut=0;
   
-  for(int i=0;i<force.length();i++){
-    pembilang=force[i]*posisisensor[i]
+    for(int i=0;i<force.length();i++){
+      pembilang=force[i]*posisisensor[i]
     penyebut=penyebut+force[i]
-  }
-  return pembilang/penyebut;
+    }
+   return pembilang/penyebut;
+   }
 }
-
 
