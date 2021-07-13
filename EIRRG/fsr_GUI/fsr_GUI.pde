@@ -98,8 +98,10 @@ float countCoP(){
   float pembilang=0;
   float penyebut=0;
   if(leftfootforce>0 && rightfootforce>0){ 
-    momenkiri=forceleft[i]*posisisensorleft[i];
-    momenkanan==forceright[i]*posisisensorright[i];
+    for(int i=0;i<force.length;i++){
+      momenkiri=forceleft[i]*posisisensorleft[i];
+      momenkanan=forceright[i]*posisisensorright[i];
+    }
     pembilang=momenkanan*rightfootforce+momenkiri*leftfootforce;
     penyebut=leftfootforce+rightfootforce;
   }
