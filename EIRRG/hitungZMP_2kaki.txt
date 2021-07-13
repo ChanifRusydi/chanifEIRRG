@@ -1,0 +1,112 @@
+%{ 
+    Matlab Code
+
+    Hitung ZMP menggunakan multiple Force Sensors
+    Kaki Kanan  4 sensor FSR
+    Kaki Kiri   4 sensor FSR
+    asumsi : panjang kaki 2x4
+%}
+
+close all; clear; clc;
+
+% Inisialisasi
+SSP_R=0;
+SSP_L=0;
+DSP=0;
+
+% Kaki Kanan
+% Posisi sensor FSR : p1 = (0,0), p2 = (2,0), p3 = (2,4), p4 = (0,4)
+R_p1_x = 0;
+R_p1_y = 0;
+R_p2_x = 2;
+R_p2_y = 0;
+R_p3_x = 2;
+R_p3_y = 4;
+R_p4_x = 0;
+R_p4_y = 4;
+% Besar gaya terukur pada sensor FSR : f1 = 10, f2 = 10, f3 = 10, f4 = 10
+% Nilai sensor FSR kaki kanan masuk ke sini!
+R_f1_z = 10;
+R_f2_z = 10;
+R_f3_z = 10;
+R_f4_z = 10;
+fR_z = R_f1_z + R_f2_z + R_f3_z + R_f4_z; % Resultan gaya atau jumlah semua gaya yg terukur oleh sensor FSR
+
+% Kaki Kiri
+% Posisi sensor FSR : p1 = (6,0), p2 = (8,0), p3 = (8,4), p4 = (6,4)
+L_p1_x = 6;
+L_p1_y = 0;
+L_p2_x = 8;
+L_p2_y = 0;
+L_p3_x = 8;
+L_p3_y = 4;
+L_p4_x = 6;
+L_p4_y = 4;
+% Besar gaya terukur pada sensor FSR : f1 = 10, f2 = 10, f3 = 10, f4 = 10
+% Nilai sensor FSR kaki kiri masuk ke sini!
+L_f1_z = 10;
+L_f2_z = 10;
+L_f3_z = 10;
+L_f4_z = 10;
+fL_z = L_f1_z + L_f2_z + L_f3_z + L_f4_z; % Resultan gaya atau jumlah semua gaya yg terukur oleh sensor FSR
+
+% Posisi ZMP
+% Kaki Kanan
+if fL_z==0 && fR_z==0
+    SSP_R;
+    SSP_L;
+    DSP;
+elseif fL_z==0
+    SSP_R=1;    % Kaki Kanan, Single Support Phase
+    pR_x = (R_p1_x*R_f1_z + R_p2_x*R_f2_z + R_p3_x*R_f3_z + R_p4_x*R_f4_z)/(R_f1_z + R_f2_z + R_f3_z + R_f4_z);
+    pR_y = (R_p1_y*R_f1_z + R_p2_y*R_f2_z + R_p3_y*R_f3_z + R_p4_y*R_f4_z)/(R_f1_z + R_f2_z + R_f3_z + R_f4_z);
+elseif fR_z==0
+    SSP_L=1;    % Kaki Kiri, Single Support Phase
+    pL_x = (L_p1_x*L_f1_z + L_p2_x*L_f2_z + L_p3_x*L_f3_z + L_p4_x*L_f4_z)/(L_f1_z + L_f2_z + L_f3_z + L_f4_z);
+    pL_y = (L_p1_y*L_f1_z + L_p2_y*L_f2_z + L_p3_y*L_f3_z + L_p4_y*L_f4_z)/(L_f1_z + L_f2_z + L_f3_z + L_f4_z);
+else
+    DSP=1;      % Kaki Kanan dan Kaki Kiri, Double Support Phase
+    % Kaki Kanan
+    pR_x = (R_p1_x*R_f1_z + R_p2_x*R_f2_z + R_p3_x*R_f3_z + R_p4_x*R_f4_z)/(R_f1_z + R_f2_z + R_f3_z + R_f4_z);
+    pR_y = (R_p1_y*R_f1_z + R_p2_y*R_f2_z + R_p3_y*R_f3_z + R_p4_y*R_f4_z)/(R_f1_z + R_f2_z + R_f3_z + R_f4_z);
+    % Kaki Kiri
+    pL_x = (L_p1_x*L_f1_z + L_p2_x*L_f2_z + L_p3_x*L_f3_z + L_p4_x*L_f4_z)/(L_f1_z + L_f2_z + L_f3_z + L_f4_z);
+    pL_y = (L_p1_y*L_f1_z + L_p2_y*L_f2_z + L_p3_y*L_f3_z + L_p4_y*L_f4_z)/(L_f1_z + L_f2_z + L_f3_z + L_f4_z);
+end
+
+% Posisi ZMP yang dihitung dari 2 kaki
+if SSP_R==0 && SSP_L==0 && DSP==0
+    disp('Pembacaan nilai sensor FSR kaki kanan dan kiri = 0!')
+    disp('Taruh robot di lantai')
+elseif SSP_R==1     % Single Support Phase
+    px = pR_x
+    py = pR_y
+elseif SSP_L==1     % Single Support Phase
+    px = pL_x
+    py = pL_y
+else                % Double Support Phase
+    px = (pR_x*fR_z + pL_x*fL_z)/(fR_z + fL_z)
+    py = (pR_y*fR_z + pL_y*fL_z)/(fR_z + fL_z)
+end
+
+
+r = antenna.Rectangle('Center',[1,2],'Length',2,'Width',4);
+l = antenna.Rectangle('Center',[7,2],'Length',2,'Width',4);
+
+% ZMP kaki kanan
+if SSP_R==0 && SSP_L==0 && DSP==0
+    result = r+l;
+elseif SSP_R==1     % Single Support Phase
+    cR = antenna.Circle('Center',[pR_x pR_y],'Radius',0.1);
+    result = r-cR+l;
+elseif SSP_L==1     % Single Support Phase
+    cL = antenna.Circle('Center',[pL_x pL_y],'Radius',0.1);
+    result = r+l-cL;
+else                % Double Support Phase
+    cR = antenna.Circle('Center',[pR_x pR_y],'Radius',0.1);
+    cL = antenna.Circle('Center',[pL_x pL_y],'Radius',0.1);
+    zmp = antenna.Circle('Center',[px py],'Radius',0.1);
+    result = r-cR+zmp+l-cL;
+end
+    
+show(result)

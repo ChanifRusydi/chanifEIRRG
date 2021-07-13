@@ -1,0 +1,26 @@
+% Thesis
+% Hitung ZMP menggunakan multiple Force Sensors untuk 1 kaki
+close all; clear; clc;
+
+% Inisialisasi
+% Posisi sensor FSR : p1 = (0,0), p2 = (2,0), p3 = (2,4), p4 = (0,4)
+p1_x = 0;
+p1_y = 0;
+p2_x = 2;
+p2_y = 0;
+p3_x = 2;
+p3_y = 4;
+p4_x = 0;
+p4_y = 4;
+% Besar gaya terukur pada sensor FSR : f1 = 10, f2 = 10, f3 = 10, f4 = 10
+f1_z = 10;
+f2_z = 10;
+f3_z = 10;
+f4_z = 10;
+
+
+% posisi ZMP
+px = (p1_x*f1_z + p2_x*f2_z + p3_x*f3_z + p4_x*f4_z)/(f1_z + f2_z + f3_z + f4_z);
+py = (p1_y*f1_z + p2_y*f2_z + p3_y*f3_z + p4_y*f4_z)/(f1_z + f2_z + f3_z + f4_z);
+px
+py
