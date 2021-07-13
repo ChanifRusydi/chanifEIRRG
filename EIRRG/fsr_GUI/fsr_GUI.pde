@@ -86,10 +86,10 @@ void tulisan(){
   text(textCoP+nilaiCoP, 24,200);
   
   String textLeftForce="Force on Left :"
-  text(textLeftForce,24,210);
+  text(textLeftForc+leftfootforce,24,210);
 
   String textRightForce="Force on Right :";
-  text(textRightForce,24,220);
+  text(textRightForce+rightfootforce,24,220);
 
   String textaverageforce="Average Force :";
   text(textaverageforce+averageforce,24,220);
@@ -98,7 +98,10 @@ float countCoP(){
   float pembilang=0;
   float penyebut=0;
   if(leftfootforce>0 && rightfootforce>0){ 
-
+    momenkiri=forceleft[i]*posisisensorleft[i];
+    momenkanan==forceright[i]*posisisensorright[i];
+    pembilang=momenkanan*rightfootforce+momenkiri*leftfootforce;
+    penyebut=leftfootforce+rightfootforce;
   }
   else if(leftfootforce==0 || rightfootforce==0){
     for(int i=0;i<force.length();i++){  
@@ -107,5 +110,8 @@ float countCoP(){
     }
   }
   return pembilang/penyebut;
+}
+void grafik(){
+
 }
 
