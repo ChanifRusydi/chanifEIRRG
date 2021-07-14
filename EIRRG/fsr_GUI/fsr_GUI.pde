@@ -79,8 +79,14 @@ void tulisan(){
  //tentukan mode
  if(leftfootforce>0 && rightfootforce>0){
    xcop=countCoP()
+   ycop=countCoP()
+   String mode="Double Support Phase"
  }
-  
+ else if (leftfootforce>0 && rightfootforce==0) {
+   xcop=
+ }
+
+  text(" Gait Phase  : "+mode,24,180);
   //float leftfootforce;
   //float rightfootforce;
   float averageforce=(leftfootforce+rightfootforce)/2;
