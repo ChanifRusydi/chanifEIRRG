@@ -76,6 +76,11 @@ void serialEvent (Serial myPort) {
 void tulisan(){
   int  xcop=0;
   int ycop=0;
+ //tentukan mode
+ if(leftfootforce>0 && rightfootforce>0){
+   xcop=countCoP()
+ }
+  
   //float leftfootforce;
   //float rightfootforce;
   float averageforce=(leftfootforce+rightfootforce)/2;
