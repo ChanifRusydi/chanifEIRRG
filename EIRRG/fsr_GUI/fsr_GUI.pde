@@ -45,9 +45,11 @@ void setup () {
   }
 
 void draw () {
+  tulisan();
+
     // draw the line:
-    stroke(127, 34, 255);
-    line(xPos, height, xPos, height - inByte);
+  stroke(127, 34, 255);
+  line(xPos, height, xPos, height - inByte);
 
     // at the edge of the screen, go back to the beginning:
     if (xPos >= width) {
@@ -72,7 +74,18 @@ void serialEvent (Serial myPort) {
       inByte = map(inByte, 0, 1023, 0, height);
     }
   }
+void visualCoP(){
+  size(1000,600);
+  text("Left Foot",50,15);
 
+  fill(255,255,255);
+  rect(20,20,120,200);
+  fill(0);
+  ellipse(30,30,20,20);
+  text("Right Foot",170,15);
+  fill(255,255,255);
+  rect(160,20,120,200);
+}
 void tulisan(){
   int  xcop=0;
   int ycop=0;
