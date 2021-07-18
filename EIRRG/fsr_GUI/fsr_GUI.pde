@@ -19,6 +19,7 @@ Serial myPort;        // The serial port
 int xPos = 1;         // horizontal position of the graph
 float inByte = 0;
 
+
 //besaran kaki
 int lebarkaki=12;
 int panjangkaki=20
@@ -157,11 +158,13 @@ void tulisan(){
   }
 } */
 class SSP(){
-  int[] force, positionX, positionY;
-  SSP(int[] tekanan,int[] posisiX,int posisiY){
+  int force;
+  int[] positionX, positionY;
+  SSP(int tekanan,int[] posisiX,int posisiY){
     force=force;
-    positionX=posisiX;
-    positionY=posisiY;
+    //positionX=posisiX;
+    arrayCopy(posisiX, positionX);
+    //positionY=posisiY;
   }
   int calculateCoP(){
     for(int i=0;i<force.length();i++){  
@@ -172,7 +175,7 @@ class SSP(){
   
 }
 class DSP(){
-  int[]
+  int[] forceleftfoot,leffootXposiiton, leffootYposiiton;
   for(int i=0;i<force.length;i++){
       momenkiri=forceleft[i]*posisisensorleft[i];
       momenkanan=forceright[i]*posisisensorright[i];
