@@ -1,21 +1,27 @@
-public int  xcop;
-public int ycop;
-public int leftfootforce=0;
-public int rightfootforce=0;
+int xcop;
+int ycop;
+int leftfootforce=0;
+int rightfootforce=0;
 float averageforce=(leftfootforce+rightfootforce)/2;
 
+
 import processing.serial.*;
-
-int FSRLeftWidth==100;
+//grafik kaki kiri
+int FSRLeftWidth=100;
 int FSRLeftHeight=100;
-int FSRLeftPosition=800;
-
+int FSRLeftXPosition=800;
+int FSRLeftYPosition=100;
+//grafik kaki kanan
 int FSRRightWidth=100;
-int FSRRightWidth=100;
+int FSRRRightWidth=100;
+int FSRRightPosition=
 Serial myPort;        // The serial port
 int xPos = 1;         // horizontal position of the graph
 float inByte = 0;
 
+//besaran kaki
+int lebarkaki=12;
+int panjangkaki=20
 int[] forceleft= new int[8];
 int[] posisisensorleft = new int[8];
 int[] forceright= new int[8];
@@ -26,7 +32,7 @@ for(int i=0;i<force.length;i++){
 }
 void setup () {
     // set the window size:
-   size(400, 300);
+   size(1000, 600);
 
     // List all the available serial ports
     // if using Processing 2.1 or later, use Serial.printArray()
@@ -42,9 +48,20 @@ void setup () {
 
     // set initial background:
     background(0);
+  String mode;
+ //tentukan mode
+ if(leftfootforce>0 && rightfootforce>0){
+   xcop=new countCoP(forceleft,forceright,Xpositionleft,Xpositionright);
+   ycop=new countCoP();
+   mode="Double Support Phase";
+ }
+ else if (leftfootforce>0 && rightfootforce==0) {
+   xcop=
+ }
   }
 
 void draw () {
+  ilustrasiposisi();
   tulisan();
 
     // draw the line:
@@ -87,17 +104,7 @@ void visualCoP(){
   rect(160,20,120,200);
 }
 void tulisan(){
-  int  xcop=0;
-  int ycop=0;
- //tentukan mode
- if(leftfootforce>0 && rightfootforce>0){
-   xcop=countCoP()
-   ycop=countCoP()
-   String mode="Double Support Phase"
- }
- else if (leftfootforce>0 && rightfootforce==0) {
-   xcop=
- }
+
 
   text(" Gait Phase  : "+mode,24,180);
   //float leftfootforce;
@@ -118,26 +125,69 @@ void tulisan(){
   String textaverageforce="Average Force :";
   text(textaverageforce+averageforce,24,220);
 }
-float countCoP(){
-  float pembilang=0;
-  float penyebut=0;
-  if(leftfootforce>0 && rightfootforce>0){ 
+/* class countCoP(){
+  int[] force,posisiX, posisiY;
+  countCoP(){
     for(int i=0;i<force.length;i++){
       momenkiri=forceleft[i]*posisisensorleft[i];
       momenkanan=forceright[i]*posisisensorright[i];
     }
-    pembilang=momenkanan*rightfootforce+momenkiri*leftfootforce;
-    penyebut=leftfootforce+rightfootforce;
-  }
-  else if(leftfootforce==0 || rightfootforce==0){
-    for(int i=0;i<force.length();i++){  
-      pembilang=force[i]*posisisensor[i]
-      penyebut=penyebut+force[i]
+      pembilang=momenkanan*rightfootforce+momenkiri*leftfootforce;
+      penyebut=leftfootforce+rightfootforce;
     }
   }
-  return pembilang/penyebut;
+  float countCoP(){
+    float pembilang=0;
+    float penyebut=0;
+    if(leftfootforce>0 && rightfootforce>0){ 
+      for(int i=0;i<force.length;i++){
+        momenkiri=forceleft[i]*posisisensorleft[i];
+        momenkanan=forceright[i]*posisisensorright[i];
+      }
+      pembilang=momenkanan*rightfootforce+momenkiri*leftfootforce;
+      penyebut=leftfootforce+rightfootforce;
+    }
+    else if(leftfootforce==0 || rightfootforce==0){
+      for(int i=0;i<force.length();i++){  
+        pembilang=force[i]*posisisensor[i]
+        penyebut=penyebut+force[i]
+      }
+    }
+    return pembilang/penyebut;
+  }
+} */
+class SSP(){
+  int[] force, positionX, positionY;
+  SSP(int[] tekanan,int[] posisiX,int posisiY){
+    force=force;
+    positionX=posisiX;
+    positionY=posisiY;
+  }
+  int calculateCoP(){
+    for(int i=0;i<force.length();i++){  
+        pembilang=force[i]*posisisensor[i];
+        penyebut=penyebut+force[i];
+     }
+     return pembilang/penyebut;
+  
 }
+class DSP(){
+  int[]
+  for(int i=0;i<force.length;i++){
+      momenkiri=forceleft[i]*posisisensorleft[i];
+      momenkanan=forceright[i]*posisisensorright[i];
+  }
+      pembilang=momenkanan*rightfootforce+momenkiri*leftfootforce;
+      penyebut=leftfootforce+rightfootforce;
+    }
 void grafik(){
 
 }
 
+void ilustrasiposisi(){
+  rect(50, 50, lebarkaki, panjangkaki);
+  rect(lebarkaki+100, 50, lebarkaki, lebarkaki);
+  ellipse(75, 75, 20, 20);
+  ellipse(panjangkaki-75, y, width, height);
+
+}
