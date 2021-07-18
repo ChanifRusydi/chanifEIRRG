@@ -1,9 +1,10 @@
-int xcop;
-int ycop;
+int xcop_result;
+int ycop_result;
 int leftfootforce=0;
 int rightfootforce=0;
 float averageforce=(leftfootforce+rightfootforce)/2;
-
+SSP singlexcop, singlecop;
+DSP xcop,ycop;
 
 import processing.serial.*;
 //grafik kaki kiri
@@ -27,10 +28,10 @@ int[] forceleft= new int[8];
 int[] posisisensorleft = new int[8];
 int[] forceright= new int[8];
 int[] posisisensorright = new int[8];
-for(int i=0;i<force.length;i++){
+/* for(int i=0;i<force.length;i++){
   leftfootforce+=forceleft[i];
   rightfootforce+=forceright[i];
-}
+} */
 void setup () {
     // set the window size:
    size(1000, 600);
@@ -49,15 +50,20 @@ void setup () {
 
     // set initial background:
     background(0);
+    for(int i=0;i<force.length;i++){
+      leftfootforce+=forceleft[i];
+      rightfootforce+=forceright[i];
+    }
   String mode;
  //tentukan mode
  if(leftfootforce>0 && rightfootforce>0){
-   xcop=new countCoP(forceleft,forceright,Xpositionleft,Xpositionright);
+   xcop=new countCoP(forceleft,forceright,,);
    ycop=new countCoP();
    mode="Double Support Phase";
  }
  else if (leftfootforce>0 && rightfootforce==0) {
-   xcop=
+   xcop=new SSP()  //hitung xcop kaki kiri
+   ycop
  }
   }
 
@@ -159,11 +165,11 @@ void tulisan(){
 } */
 class SSP(){
   int force;
-  int[] positionX, positionY;
-  SSP(int tekanan,int[] posisiX,int posisiY){
+  int[] posisi;
+  SSP(int tekanan,int[] posisi){
     force=force;
     //positionX=posisiX;
-    arrayCopy(posisiX, positionX);
+    arrayCopy(posisi, position);
     //positionY=posisiY;
   }
   int calculateCoP(){
