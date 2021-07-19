@@ -3,7 +3,7 @@ int ycop_result;
 int leftfootforce=0;
 int rightfootforce=0;
 float averageforce=(leftfootforce+rightfootforce)/2;
-SSP singlexcop, singlecop;
+SSP singlexcop, singleycop;
 DSP xcop,ycop;
 
 import processing.serial.*;
@@ -23,7 +23,7 @@ float inByte = 0;
 
 //besaran kaki
 int lebarkaki=12;
-int panjangkaki=20
+int panjangkaki=20;
 int[] forceleft= new int[8];
 int[] posisisensorleft = new int[8];
 int[] forceright= new int[8];
@@ -59,11 +59,17 @@ void setup () {
  if(leftfootforce>0 && rightfootforce>0){
    xcop=new countCoP(forceleft,forceright,,);
    ycop=new countCoP();
+   xcop_result=DSP.calculateCoP();
    mode="Double Support Phase";
  }
  else if (leftfootforce>0 && rightfootforce==0) {
-   xcop=new SSP()  //hitung xcop kaki kiri
-   ycop
+   singlexcop=new SSP()  //hitung xcop kaki kiri
+   singleycop=new SSP();
+ }
+ else if(leftfootforce==0 && rightfootforce>0){
+   singlexcop=new SSP();
+   singleycop=new SSP();
+
  }
   }
 
